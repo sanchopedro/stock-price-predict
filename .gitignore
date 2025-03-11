@@ -169,3 +169,8 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# IOS Folder
+.DS_Store
+*/.DS_Store
+*/.vscode/
