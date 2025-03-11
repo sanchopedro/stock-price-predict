@@ -5,6 +5,7 @@ Este projeto tem como objetivo prever os preços das ações do IBOVESPA utiliza
 ## Funcionalidades
 
 - **Download de Dados:** Utiliza o [yfinance](https://pypi.org/project/yfinance/) para baixar dados históricos até o dia de ontem.
+
 - **Previsão:** Processa os últimos 20 dias de preços para prever o valor do próximo dia, com cálculo de intervalo de incerteza.
 
 - **API Back-end:** Disponibiliza uma API desenvolvida com FastAPI. **Observação:** A API está hospedada no Railway, o que facilita o acesso sem a necessidade de rodá-la localmente.
@@ -14,6 +15,8 @@ Este projeto tem como objetivo prever os preços das ações do IBOVESPA utiliza
 - **Treinamento e Ajuste do Modelo:** Possui scripts para treinamento, fine-tuning e predição do modelo.
 
 - **Gerenciamento de Modelos:** Os modelos treinados são salvos na pasta **models** para facilitar o versionamento e a reutilização.
+
+- **Licença:** Consulte o arquivo [LICENSE](LICENSE) para informações sobre a licença deste projeto.
 
 ## Estrutura de Pastas
 
@@ -30,6 +33,7 @@ stock-price-predict/
 │   └── predict.py         # Script para realizar predições diretamente sem a API
 ├── web/
 │   └── app.py             # Interface web com Streamlit para exibição dos dados e previsão
+├── LICENSE                # Arquivo de licença do projeto
 ├── requirements.txt       # Dependências do projeto
 └── README.md              # Este arquivo
 ```
@@ -75,14 +79,16 @@ python src/data_loader.py
 
 ### 4. API (Back-end)
 A API foi desenvolvida com FastAPI e está hospedada no Railway.  
+
 **Para fins de desenvolvimento local**, você pode iniciar a API com:
 ```
 uvicorn api.main:app --reload
 ```
-No entanto, para utilização em produção, utilize o endpoint disponibilizado pelo Railway. [stock-price-predict.up.railway.app](https://stock-price-predict.up.railway.app/)
+No entanto, para utilização em produção, utilize o endpoint disponibilizado pelo Railway: [stock-price-predict.up.railway.app](https://stock-price-predict.up.railway.app/)
 
 ### 5. Interface Web (Front-end)
 A interface web foi criada com Streamlit e já está hospedada.  
+
 Acesse a interface em: [https://ibov-stock-price-predict.streamlit.app/](https://ibov-stock-price-predict.streamlit.app/)
 
 ## Observações
@@ -92,6 +98,8 @@ Acesse a interface em: [https://ibov-stock-price-predict.streamlit.app/](https:/
 - O modelo de previsão (implementado em `api/main.py`, `src/train.py` e `src/fine_tune.py`) utiliza os dados dos últimos 20 dias para realizar a predição. Caso o modelo não esteja treinado ou ajustado, execute os scripts correspondentes.
 
 - Os modelos treinados são armazenados na pasta **models** e podem ser reutilizados em futuras predições sem a necessidade de re-treinamento.
+
+- Consulte o arquivo [LICENSE](LICENSE) para mais informações sobre os termos de uso deste projeto.
 
 ---
 
