@@ -14,8 +14,15 @@ app = FastAPI()
 
 @app.get("/")
 def read_root():
-    return "Bem-vindo à API de previsão de ações!"
-
+    return {
+        "message": "Bem-vindo à API de previsão de ações!",
+        "instrucoes": "Use a rota /predict/{ticker} para obter previsões.",
+        "exemplo": "https://stock-price-predict.up.railway.app/predict/PETR4",
+        "tickers_disponiveis": [
+            "PETR4", "VALE3", "ITUB4", "BBDC4", "ABEV3",
+            "B3SA3", "MGLU3", "WEGE3", "TAEE11", "USIM5"
+        ],
+    }
 
 @app.get("/predict/{ticker}")
 def predict_stock(ticker: str):
