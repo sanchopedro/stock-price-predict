@@ -6,9 +6,13 @@ Este projeto tem como objetivo prever os preços das ações do IBOVESPA utiliza
 
 - **Download de Dados:** Utiliza o [yfinance](https://pypi.org/project/yfinance/) para baixar dados históricos até o dia de ontem.
 - **Previsão:** Processa os últimos 20 dias de preços para prever o valor do próximo dia, com cálculo de intervalo de incerteza.
-- **API:** Disponibiliza uma API (FastAPI) que retorna os dados de previsão.
-- **Interface Web:** Exibe um gráfico interativo com Plotly para acompanhar o histórico de preços e a previsão.
+
+- **API Back-end:** Disponibiliza uma API desenvolvida com FastAPI. **Observação:** A API está hospedada no Railway, o que facilita o acesso sem a necessidade de rodá-la localmente.
+
+- **Interface Web (Front-end):** Exibe um gráfico interativo com Plotly para acompanhar o histórico de preços e a previsão. A interface já está hospedada e pode ser acessada [aqui](https://ibov-stock-price-predict.streamlit.app/).
+
 - **Treinamento e Ajuste do Modelo:** Possui scripts para treinamento, fine-tuning e predição do modelo.
+
 - **Gerenciamento de Modelos:** Os modelos treinados são salvos na pasta **models** para facilitar o versionamento e a reutilização.
 
 ## Estrutura de Pastas
@@ -16,7 +20,7 @@ Este projeto tem como objetivo prever os preços das ações do IBOVESPA utiliza
 ```
 stock-price-predict/
 ├── api/
-│   └── main.py            # API FastAPI responsável pela previsão
+│   └── main.py            # API FastAPI responsável pela previsão (back-end hospedado no Railway)
 ├── data/                  # Arquivos CSV gerados com os dados históricos
 ├── models/                # Modelos treinados e pesos salvos
 ├── src/
@@ -30,7 +34,7 @@ stock-price-predict/
 └── README.md              # Este arquivo
 ```
 
-## Como Usar
+## Como Usar (Para Desenvolvimento Local)
 
 ### 1. Instalação
 - Clone o repositório:
@@ -69,26 +73,26 @@ python src/data_loader.py
   python src/predict.py
   ```
 
-### 4. Iniciar a API
-A API utiliza FastAPI. Para iniciar o servidor, execute:
+### 4. API (Back-end)
+A API foi desenvolvida com FastAPI e está hospedada no Railway.  
+**Para fins de desenvolvimento local**, você pode iniciar a API com:
 ```
 uvicorn api.main:app --reload
 ```
-A API ficará disponível em [http://127.0.0.1:8000](http://127.0.0.1:8000).
+No entanto, para utilização em produção, utilize o endpoint disponibilizado pelo Railway. [stock-price-predict.up.railway.app](https://stock-price-predict.up.railway.app/)
 
-### 5. Rodar a Interface Web
-Na pasta do projeto, execute o seguinte comando para iniciar o Streamlit:
-```
-streamlit run web/app.py
-```
-A interface web será aberta no navegador, exibindo o gráfico interativo e as informações de previsão.
+### 5. Interface Web (Front-end)
+A interface web foi criada com Streamlit e já está hospedada.  
+Acesse a interface em: [https://ibov-stock-price-predict.streamlit.app/](https://ibov-stock-price-predict.streamlit.app/)
 
 ## Observações
 
-- Certifique-se de que a API esteja em execução para que a interface web consiga obter os dados de previsão.
-- O modelo de previsão (implementado em `api/main.py`, `src/train.py` e `src/fine_tune.py`) espera uma entrada de 20 dias para realizar a predição. Caso o modelo não esteja treinado ou ajustado, apenas execute os scripts de treinamento e fine-tuning.
-- Os modelos treinados são armazenados na pasta **models** e podem ser reutilizados para futuras predições sem a necessidade de re-treinamento.
+- Certifique-se de que, em ambiente de desenvolvimento, a API esteja em execução para que a interface web (caso esteja rodando localmente) consiga obter os dados de previsão.
+
+- O modelo de previsão (implementado em `api/main.py`, `src/train.py` e `src/fine_tune.py`) utiliza os dados dos últimos 20 dias para realizar a predição. Caso o modelo não esteja treinado ou ajustado, execute os scripts correspondentes.
+
+- Os modelos treinados são armazenados na pasta **models** e podem ser reutilizados em futuras predições sem a necessidade de re-treinamento.
 
 ---
 
-Este projeto foi desenvolvido para demonstrar a integração entre download de dados históricos, treinamento e ajuste de modelos de previsão, e visualização interativa com Streamlit e Plotly.
+Este projeto foi desenvolvido para demonstrar a integração entre o download de dados históricos, o processamento e ajuste de modelos de previsão, e a visualização interativa com Streamlit e Plotly.
