@@ -52,7 +52,8 @@ def get_next_business_day(last_date):
 # Botão para previsão
 if st.button("📊 Prever"):
     with st.spinner("🔄 Obtendo dados..."):
-        response = requests.get(f"http://127.0.0.1:8000/predict/{ticker}")
+        API_URL = "https://stock-price-predict.up.railway.app"
+        response = requests.get(f"{API_URL}/predict/{ticker}")
 
     if response.status_code == 200:
         data = response.json()
